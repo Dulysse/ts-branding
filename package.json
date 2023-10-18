@@ -1,0 +1,43 @@
+{
+	"name": "ts-branding",
+	"version": "1.0.0",
+	"description": "Decorate object properties and discover the power of Typescript brands ✨",
+	"type": "module",
+	"main": "index.d.ts",
+	"scripts": {
+		"format:check": "prettier . --check",
+		"format:fix": "prettier . --write",
+		"lint": "npx eslint --fix .",
+		"prepare": "husky install"
+	},
+	"lint-staged": {
+		"**/*": "prettier --write --ignore-unknown"
+	},
+	"keywords": [
+		"node",
+		"typescript",
+		"type",
+		"types",
+		"safe",
+		"tools",
+		"typesafe"
+	],
+	"author": {
+		"name": "Ulysse Dupont",
+		"url": "https://github.com/dulysse"
+	},
+	"repository": {
+		"url": "https://github.com/Dulysse/ts-branding",
+		"type": "private"
+	},
+	"license": "ISC",
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^6.8.0",
+		"eslint": "^8.51.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-prettier": "^5.0.1",
+		"husky": "^8.0.3",
+		"prettier": "^3.0.3",
+		"typescript": "^5.2.2"
+	}
+}
