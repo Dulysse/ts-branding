@@ -37,8 +37,9 @@
 	},
 	"repository": {
 		"url": "https://github.com/Dulysse/ts-branding",
-		"type": "private"
+		"type": "public"
 	},
+	"private": false,
 	"license": "ISC",
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^6.8.0",
