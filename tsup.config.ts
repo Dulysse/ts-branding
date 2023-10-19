@@ -6,4 +6,8 @@ export default defineConfig({
 	target: "esnext",
 	format: ["esm"],
 	splitting: true,
+	minify: true,
+	keepNames: true,
+	bundle: true,
+	clean: true,
 });

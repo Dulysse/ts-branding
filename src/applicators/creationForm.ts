@@ -40,7 +40,7 @@ type CreationOptionalForm<
 		> extends true
 			? key
 			: never;
-	}[keyof T]]?: T[key] extends Optional<infer ResultType, Signature>
+	}[keyof T]]?: T[key] extends Optional<infer ResultType, Signature> | undefined
 		? ResultType | undefined
 		: never;
 };
