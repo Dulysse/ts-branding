@@ -5,6 +5,7 @@ import type {
 	Satisfy,
 } from "@/utils/types";
 import type { PrimaryKeyBrand } from "@/utils/brands";
+import type { PrimaryKey } from "@/operators";
 import type { Cleaned } from "./cleaned";
 
 /**
@@ -27,5 +28,9 @@ export type PrimaryKeyType<
 				[key in Satisfy<Keys, keyof T>]: T[key];
 			},
 			Signature
-	  >[Satisfy<Keys, keyof T>]
+	  >[Satisfy<Keys, keyof T>] extends infer Values
+		? Values extends PrimaryKey<infer Res, Signature> | undefined
+			? Res
+			: never
+		: never
 	: never;
