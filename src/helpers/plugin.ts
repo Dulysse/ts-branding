@@ -14,9 +14,6 @@ export declare abstract class Plugin<
 	TModel extends DefaultModel,
 	TCleanedModel extends DefaultModel = Cleaned<TModel>,
 > {
-	/**
-	 * Helper to use get all method
-	 */
 	public getAll?(): Promise<TCleanedModel[]>;
 	public getById?(
 		id: PrimaryKeyType<TModel>
