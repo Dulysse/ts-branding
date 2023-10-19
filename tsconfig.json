@@ -5,11 +5,14 @@
 		"lib": ["ESNext"],
 		"allowJs": true,
 		"outDir": "dist",
-		"rootDir": "lib",
+		"rootDir": "src",
+		"paths": {
+			"@/*": ["./*"]
+		},
 		"strict": true,
 		"noImplicitAny": true,
 		"moduleResolution": "node",
-		"baseUrl": "lib",
+		"baseUrl": "src",
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
@@ -23,5 +26,7 @@
 		"useUnknownInCatchVariables": true,
 		"strictNullChecks": true,
 		"incremental": false
-	}
+	},
+	"include": ["src/**/*"],
+	"exclude": ["dist/**/*"]
 }

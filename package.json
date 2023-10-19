@@ -2,12 +2,21 @@
 	"name": "ts-branding",
 	"version": "1.0.0",
 	"description": "Decorate object properties and discover the power of Typescript brands ✨",
-	"type": "module",
-	"main": "index.d.ts",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"engines": {
+		"node": ">=18",
+		"pnpm": ">=8"
+	},
 	"scripts": {
+		"build": "tsup",
 		"format:check": "prettier . --check",
 		"format:fix": "prettier . --write",
 		"lint": "npx eslint --fix .",
+		"prepublishOnly": "pnpm build",
 		"prepare": "husky install"
 	},
 	"lint-staged": {
@@ -38,6 +47,7 @@
 		"eslint-plugin-prettier": "^5.0.1",
 		"husky": "^8.0.3",
 		"prettier": "^3.0.3",
+		"tsup": "^7.2.0",
 		"typescript": "^5.2.2"
 	}
 }

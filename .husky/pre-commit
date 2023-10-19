@@ -3,4 +3,5 @@
 
 pnpm format:fix
 pnpm lint
+pnpm build
 git add .

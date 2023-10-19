@@ -1,7 +1,3 @@
-export declare const PrimaryKeyBrand: unique symbol;
-export declare const CreationNeededBrand: unique symbol;
-export declare const CreationOptionalBrand: unique symbol;
-export declare const OmitBrand: unique symbol;
 export type DefaultModel = object;
 export type IsBranded<T, Brand extends symbol> = Brand extends keyof T
 	? true
