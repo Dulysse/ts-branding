@@ -1,4 +1,4 @@
-import { PrimaryKey, Required, Omit, Optional } from "@/operators";
+import type { PrimaryKey, Required, Omit, Optional } from "@/operators";
 
 export type Object = {
 	[key in string]:

@@ -43,7 +43,7 @@ For best results, add this to your `tsconfig.json`
 ### With EcmaScript module ✅
 
 ```tsx
-import { Op, Apk, Helper } from "@dulysse1/ts-branding";
+import type { Op, Apk, Helper } from "@dulysse1/ts-branding";
 // now you can decorate your forms!
 ```
 
@@ -52,7 +52,7 @@ import { Op, Apk, Helper } from "@dulysse1/ts-branding";
 #### 👉 Create `type/interface` and decorate properties 🎨
 
 ```tsx
-import { Op } from "@dulysse1/ts-branding";
+import type { Op } from "@dulysse1/ts-branding";
 
 interface User {
 	id: number;
@@ -72,7 +72,7 @@ const user: User = {
 #### 👉 Apply `Applicators` to trigger Brand functions 🔧
 
 ```tsx
-import { Apk } from "@dulysse1/ts-branding";
+import type { Apk } from "@dulysse1/ts-branding";
 
 type CreationFormUser = Apk.CreationForm<User>;
 /**
@@ -94,7 +94,7 @@ type ModificationFormUser = Apk.ModificationForm<User>;
 #### 👉 Use `Applicators` into functions 🚀
 
 ```tsx
-import { Op, Apk } from "@dulysse1/ts-branding";
+import type { Op, Apk } from "@dulysse1/ts-branding";
 
 interface User {
   id: Op.PrimaryKey<number>; // <= Operator for Primary Signature
@@ -107,7 +107,7 @@ function getById(id: Apk.PrimaryKeyType<User>) {...} // <= id is type number
 #### 👉 Use more property operators 🖌️
 
 ```tsx
-import { Op, Apk } from "@dulysse1/ts-branding";
+import type { Op, Apk } from "@dulysse1/ts-branding";
 
 interface User {
 	id: Op.PrimaryKey<number>;
@@ -139,7 +139,7 @@ type CleanedUser = Apk.Cleaned<User>;
 #### 👉 Now you can use it for `strong type verification` on your REST client 💪
 
 ```tsx
-import { Op, Apk, Helper } from "@dulysse1/ts-branding";
+import type { Op, Apk, Helper } from "@dulysse1/ts-branding";
 
 export interface User {
   id: Op.PrimaryKey<number>;
@@ -157,7 +157,7 @@ export class UserService implements Helper.Plugin<User> {
 #### 👉 Use different `Signature` to use multiple type `applicators` 📋
 
 ```tsx
-import { Op, Apk, Helper } from "@dulysse1/ts-branding";
+import type { Op, Apk, Helper } from "@dulysse1/ts-branding";
 
 export interface User {
 	name1: Op.Required<string, "user1">;

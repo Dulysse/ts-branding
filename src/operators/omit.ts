@@ -1,5 +1,5 @@
 import type { OmitBrand } from "@/utils/brands";
-import { DefaultSignature } from "@/utils/types";
+import type { DefaultSignature } from "@/utils/types";
 
 /**
  * Operator to apply `Omit Brand` to omit value with {@link Omitted}

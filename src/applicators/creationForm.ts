@@ -22,12 +22,9 @@ type CreationRequiredForm<
 		> extends true
 			? key
 			: never;
-	}[keyof T]]-?: NonNullable<T[key]> extends Required<
-		infer ResultType,
-		Signature
-	>
-		? NonNullable<ResultType>
-		: never;
+	}[keyof T]]-?: T[key] extends Required<infer ResultType, Signature>
+		? ResultType
+		: T[key];
 };
 
 type CreationOptionalForm<
@@ -42,10 +39,7 @@ type CreationOptionalForm<
 		> extends true
 			? key
 			: never;
-	}[keyof T]]?: NonNullable<T[key]> extends Optional<
-		infer ResultType,
-		Signature
-	>
+	}[keyof T]]?: T[key] extends Optional<infer ResultType, Signature>
 		? ResultType | undefined
 		: never;
 };

@@ -10,11 +10,11 @@ export type PrimaryKeyType<
 	Signature extends string = DefaultSignature,
 > = {
 	[key in keyof T]-?: IsBranded<
-		T[key],
+		NonNullable<T[key]>,
 		typeof PrimaryKeyBrand,
 		Signature
 	> extends true
-		? NonNullable<T[key]> extends PrimaryKey<infer ResultType, Signature>
+		? T[key] extends PrimaryKey<infer ResultType, Signature>
 			? NonNullable<ResultType>
 			: never
 		: never;

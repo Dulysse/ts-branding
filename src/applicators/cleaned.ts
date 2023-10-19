@@ -8,10 +8,10 @@ export type Cleaned<
 	T extends DefaultModel,
 	Signature extends string = DefaultSignature,
 > = {
-	[key in keyof T]: NonNullable<T[key]> extends PrimaryKey<infer Tp, Signature>
-		? NonNullable<Tp> extends Required<infer Tn, Signature>
-			? NonNullable<Tn> extends Optional<infer To, Signature>
-				? NonNullable<To> extends Omit<infer Tom, Signature>
+	[key in keyof T]: T[key] extends PrimaryKey<infer Tp, Signature> | undefined
+		? Tp extends Required<infer Tn, Signature> | undefined
+			? Tn extends Optional<infer To, Signature> | undefined
+				? To extends Omit<infer Tom, Signature> | undefined
 					? Tom
 					: To
 				: Tn
