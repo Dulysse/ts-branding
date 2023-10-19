@@ -1,6 +1,11 @@
-import type { DefaultModel, DefaultSignature, IsBranded } from "@/utils/types";
+import type {
+	DefaultModel,
+	DefaultSignature,
+	IsBranded,
+	Satisfy,
+} from "@/utils/types";
 import type { PrimaryKeyBrand } from "@/utils/brands";
-import type { PrimaryKey } from "@/operators";
+import type { Cleaned } from "./cleaned";
 
 /**
  * Applicator to Apply Primary key value filter operator: {@link PrimaryKey}
@@ -14,10 +19,13 @@ export type PrimaryKeyType<
 		typeof PrimaryKeyBrand,
 		Signature
 	> extends true
-		? T[key] extends PrimaryKey<infer ResultType, Signature>
-			? NonNullable<ResultType>
-			: never
+		? key
 		: never;
 }[keyof T] extends infer Keys
-	? Keys
+	? Cleaned<
+			{
+				[key in Satisfy<Keys, keyof T>]: T[key];
+			},
+			Signature
+	  >[Satisfy<Keys, keyof T>]
 	: never;

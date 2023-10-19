@@ -24,3 +24,4 @@ export type Equal<T1, T2> = T1 extends T2
 		? true
 		: false
 	: false;
+export type Satisfy<T1, T2> = T1 extends T2 ? T1 : T2;
