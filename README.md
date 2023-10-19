@@ -4,9 +4,43 @@
 
 #### <i>Decorate `object` properties and discover the power of Typescript brands ✨</i>
 
+## Getting Started 🆙
+
+### Prerequisites
+
+Install `Typescript` on your project
+
+```shell
+npm install typescript --save-dev
+```
+
+`Or`
+
+```shell
+yarn add typescript --dev
+```
+
+`Or`
+
+```shell
+pnpm i -D typescript
+```
+
+For best results, add this to your `tsconfig.json`
+
+```json
+{
+	"compilerOptions": {
+		"strictNullChecks": true, // highly recommended (required by few utilities)
+		"strict": true, // this is optional, but enable whenever possible
+		"lib": ["es2015"] // this is the lowest supported standard library
+	}
+}
+```
+
 ## How to use ? 🤔
 
-### ✅ With EcmaScript ✅
+### With EcmaScript module ✅
 
 ```tsx
 import { Op, Apk, Helper } from "@dulysse1/ts-branding";
@@ -63,7 +97,7 @@ type ModificationFormUser = Apk.ModificationForm<User>;
 import { Op, Apk } from "@dulysse1/ts-branding";
 
 interface User {
-  id: Op.PrimaryKey<number>; // <= Operator for Primary Key
+  id: Op.PrimaryKey<number>; // <= Operator for Primary Signature
   name: string;
 }
 
@@ -118,6 +152,31 @@ export class UserService implements Helper.Plugin<User> {
   public getById(id: string) {...} // ERROR ! ID should be a number!
   public create(data: Apk.CreationForm<User>) {...} // OK!
 }
+```
+
+#### 👉 Use different `Signature` to use multiple type `applicators` 📋
+
+```tsx
+import { Op, Apk, Helper } from "@dulysse1/ts-branding";
+
+export interface User {
+	name1: Op.Required<string, "user1">;
+	name2: Op.Required<string, "user2">;
+}
+
+type CreationFormUser1 = Apk.CreationForm<User, "user1">;
+/**
+ * CreationFormUser1: {
+ *    name1: string; // <= Required in form with signature "user1"
+ * }
+ */
+
+type CreationFormUser2 = Apk.CreationForm<User, "user2">;
+/**
+ * CreationFormUser2: {
+ *    name2: string; // <= Required in form with signature "user2"
+ * }
+ */
 ```
 
 ## Do you have any ideas or recommendations for improvement? 🤔

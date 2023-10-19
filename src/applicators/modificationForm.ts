@@ -1,7 +1,10 @@
-import type { DefaultModel } from "@/utils/types";
+import type { DefaultModel, DefaultSignature, Partial } from "@/utils/types";
 import type { CreationForm } from "./creationForm";
 
 /**
  * Applicator to Apply Modification form operators: {@link Required} and {@link Optional}
  */
-export type ModificationForm<T extends DefaultModel> = Partial<CreationForm<T>>;
+export type ModificationForm<
+	T extends DefaultModel,
+	Signature extends string = DefaultSignature,
+> = Partial<CreationForm<T, Signature>>;

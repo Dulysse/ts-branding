@@ -1,15 +1,24 @@
-import type { DefaultModel, IsBranded, Merge } from "@/utils/types";
+import type {
+	DefaultModel,
+	DefaultSignature,
+	IsBranded,
+	Merge,
+} from "@/utils/types";
 import type { OmitBrand } from "@/utils/brands";
 
 /**
  * Applicator to Apply `Omitted` filter operator: {@link Omit}
  */
-export type Omitted<T extends DefaultModel> = Merge<
+export type Omitted<
+	T extends DefaultModel,
+	Signature extends string = DefaultSignature,
+> = Merge<
 	{
 		[key in {
 			[key in keyof T]: IsBranded<
 				NonNullable<T[key]>,
-				typeof OmitBrand
+				typeof OmitBrand,
+				Signature
 			> extends true
 				? never
 				: keyof T[key] extends undefined
@@ -21,7 +30,8 @@ export type Omitted<T extends DefaultModel> = Merge<
 		[key in {
 			[key in keyof T]: IsBranded<
 				NonNullable<T[key]>,
-				typeof OmitBrand
+				typeof OmitBrand,
+				Signature
 			> extends true
 				? never
 				: keyof T[key] extends undefined
