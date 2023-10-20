@@ -11,7 +11,7 @@ import type {
 import type { Required, Optional } from "@/operators";
 import type { Cleaned } from "./cleaned";
 
-type CreationRequiredForm<
+declare type CreationRequiredForm<
 	T extends DefaultModel,
 	Signature extends string = DefaultSignature,
 > = {
@@ -28,7 +28,7 @@ type CreationRequiredForm<
 		: T[key];
 };
 
-type CreationOptionalForm<
+declare type CreationOptionalForm<
 	T extends DefaultModel,
 	Signature extends string = DefaultSignature,
 > = {
@@ -47,8 +47,10 @@ type CreationOptionalForm<
 
 /**
  * Applicator to Apply Creation form operators: {@link Required} and {@link Optional}
+ * ---------------------------
+ * @param Signature An optional key signature to applying operators into `sub-types`, by default the signature target every type signatures
  */
-export type CreationForm<
+export declare type CreationForm<
 	T extends DefaultModel,
 	Signature extends string = DefaultSignature,
 > = Cleaned<

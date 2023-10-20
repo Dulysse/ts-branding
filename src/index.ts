@@ -1,3 +1,3 @@
-export * as Op from "./operators";
-export * as Apk from "./applicators";
-export * as Helper from "./helpers";
+export { Op } from "./operators";
+export { Apk } from "./applicators";
+export { Helper } from "./helpers";

@@ -1,4 +1,4 @@
-import type { DefaultModel } from "@/utils/types";
+import type { DefaultModel, MaybePromise } from "@/utils/types";
 import type {
 	CreationForm,
 	ModificationForm,
@@ -29,14 +29,14 @@ export declare abstract class Plugin<
 	TModel extends DefaultModel,
 	TCleanedModel extends DefaultModel = Cleaned<TModel>,
 > {
-	public getAll?(): Promise<TCleanedModel[]>;
+	public getAll?(): MaybePromise<TCleanedModel[]>;
 	public getById?(
 		id: PrimaryKeyType<TModel>
-	): PromiseLike<TCleanedModel | undefined>;
-	public create?(data: CreationForm<TModel>): Promise<TCleanedModel>;
+	): MaybePromise<TCleanedModel | undefined>;
+	public create?(data: CreationForm<TModel>): MaybePromise<TCleanedModel>;
 	public update?(
 		id: PrimaryKeyType<TModel>,
 		data: ModificationForm<TModel>
-	): Promise<TCleanedModel>;
-	public delete?(id: PrimaryKeyType<TModel>): Promise<void>;
+	): MaybePromise<TCleanedModel>;
+	public delete?(id: PrimaryKeyType<TModel>): MaybePromise<void>;
 }

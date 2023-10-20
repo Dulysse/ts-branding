@@ -8,8 +8,10 @@ import type { OmitBrand } from "@/utils/brands";
 
 /**
  * Applicator to Apply `Omitted` filter operator: {@link Omit}
+ * ---------------------------
+ * @param Signature An optional key signature to applying operators into `sub-types`, by default the signature target every type signatures
  */
-export type Omitted<
+export declare type Omitted<
 	T extends DefaultModel,
 	Signature extends string = DefaultSignature,
 > = Merge<

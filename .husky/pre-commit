@@ -3,5 +3,6 @@
 
 pnpm format:fix
 pnpm lint
+npx tsc
 pnpm build
 git add .

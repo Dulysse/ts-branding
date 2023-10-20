@@ -5,7 +5,7 @@ export default defineConfig({
 	dts: true,
 	target: "esnext",
 	format: ["esm"],
-	splitting: true,
+	splitting: false,
 	minify: true,
 	keepNames: true,
 	bundle: true,
