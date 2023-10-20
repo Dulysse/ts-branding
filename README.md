@@ -212,7 +212,7 @@ export type User = Helper.SafeObject<{
 #### 👉 And many more complex types! 🧠
 
 ```tsx
-import { Apk, Op, Helper } from "../dist/index.mjs";
+import type { Apk, Op, Helper } from "@dulysse1/ts-branding";
 
 declare type IDemo = Helper.SafeObject<{
 	id: Op.PrimaryKey<number>;
