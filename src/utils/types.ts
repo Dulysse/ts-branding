@@ -1,4 +1,4 @@
-import { ErrorBrand } from "./brands";
+import type { ErrorBrand } from "./brands";
 /**
  * The default object model allowed
  */

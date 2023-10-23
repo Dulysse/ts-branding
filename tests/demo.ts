@@ -1,4 +1,4 @@
-import { Apk, Op, Helper } from "../dist/index.mjs";
+import type { Apk, Op, Helper } from "../dist/index.mjs";
 
 export declare type IDemo = Helper.SafeObject<{
 	id: Op.Required<number, "demo">;
@@ -9,4 +9,4 @@ export declare type IDemo = Helper.SafeObject<{
 	};
 }>;
 
-export declare type Demo = Apk.Cleaned<IDemo>;
+export declare type Demo = Apk.Cleaned<IDemo["media"]>;

@@ -11,7 +11,24 @@ import type { PrimaryKey } from "@/operators";
 import type { Cleaned } from "./cleaned";
 
 /**
- * Applicator to Apply Primary key value filter operator: {@link PrimaryKey}
+ * #### Applicator to Apply Primary key value filter operator: {@link PrimaryKey}
+ * ---------------------------
+ * @example
+ * ```ts
+ * import type { Op, Apk } from "@dulysse1/ts-branding";
+ *
+ * type User = {
+ * 		id: Op.PrimaryKey<number>; // Brand your type!
+ * };
+ *
+ * type UserPrimaryKey = Apk.PrimaryKeyType<User>; // number
+ *
+ * type User2 = {
+ * 		id: Op.Omit<number>; // Brand your type!
+ * };
+ *
+ * type User2PrimaryKey = Apk.PrimaryKeyType<User2>; // never
+ * ```
  */
 export declare type PrimaryKeyType<T extends DefaultModel> = {
 	[key in keyof T]-?: IsBranded<

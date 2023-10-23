@@ -1,8 +1,8 @@
-import { Cleaned } from "./cleaned";
-import { CreationForm } from "./creationForm";
-import { ModificationForm } from "./modificationForm";
-import { Omitted } from "./omitted";
-import { PrimaryKeyType } from "./primaryKeyType";
+import type { Cleaned } from "./cleaned";
+import type { CreationForm } from "./creationForm";
+import type { ModificationForm } from "./modificationForm";
+import type { Omitted } from "./omitted";
+import type { PrimaryKeyType } from "./primaryKeyType";
 
 /**
  * List of `ts-branding` applicators:

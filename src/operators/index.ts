@@ -1,8 +1,8 @@
-import { Required } from "./required";
-import { Omit } from "./omit";
-import { Pick } from "./pick";
-import { Optional } from "./optional";
-import { PrimaryKey } from "./primaryKey";
+import type { Required } from "./required";
+import type { Omit } from "./omit";
+import type { Pick } from "./pick";
+import type { Optional } from "./optional";
+import type { PrimaryKey } from "./primaryKey";
 
 /**
  * List of `ts-branding` operators:

@@ -1,4 +1,4 @@
-import {
+import type {
 	DefaultModel,
 	IsBranded,
 	TsBrandError,
@@ -8,7 +8,11 @@ import {
 	DefaultSignature,
 	And,
 } from "@/utils/types";
-import { RequiredBrand, OptionalBrand, PrimaryKeyBrand } from "@/utils/brands";
+import type {
+	RequiredBrand,
+	OptionalBrand,
+	PrimaryKeyBrand,
+} from "@/utils/brands";
 
 /**
  * Make sure that your object is safely declared and correct with `ts-branding` rules:
@@ -17,6 +21,36 @@ import { RequiredBrand, OptionalBrand, PrimaryKeyBrand } from "@/utils/brands";
  * 3) Do not apply `Required` and `Optional` marks to the same property
  * ---------------------------
  * #### Warning! If only one rule is not respected the result of the type an empty object with {@link ErrorBrand} as {@link TsBrandError} result with the reason of the error
+ * ---------------------------
+ * @example
+ * ```ts
+ * import type { Op, Helper } from "@dulysse1/ts-branding";
+ *
+ *	// UNSAFE!
+ *	export interface User {
+ *		id: Op.PrimaryKey<number>;
+ *		id2: Op.PrimaryKey<number>; // ❌ Two primary keys may be a mistake!
+ *		// ------------------------
+ *		name: Op.Required<Op.Optional<string>>; // ❌ A required type may not be optional!
+ *	}
+ *
+ *	// ✅ SAFE!
+ *	export type User = Helper.SafeObject<{
+ *		id: Op.PrimaryKey<number>;
+ *		id2: Op.PrimaryKey<number>;
+ *	}>; // ❌ NOT OK! Error: one primary key only!
+ *
+ *	export type User = Helper.SafeObject<{
+ *		name: Op.Required<Op.Optional<string>>;
+ *	}>; // ❌ NOT OK! Error: cannot be required and optional
+ *
+ *	export type User = Helper.SafeObject<{
+ *		id: Op.PrimaryKey<number>;
+ *		name: Op.Optional<string>;
+ *		description?: Op.Optional<string>;
+ *	}>; // ✅ OK!
+ * ```
+ * ---------------------------
  * @returns safe object type or {@link TsBrandError}
  */
 export declare type SafeObject<T extends DefaultModel> = SafeObjectRule1<T>;

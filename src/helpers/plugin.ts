@@ -7,23 +7,24 @@ import type {
 } from "@/applicators";
 
 /**
- * ### Plugin to apply `REST`validation to web client
- * @class Plugin
+ * ### Plugin to apply `REST` safe validation to web client
+ * ---------------------------
  * @example
- * ```tsx
- *export interface User {
+ * ```ts
+ * import type { Op, Apk, Helper } from "@dulysse1/ts-branding";
+ *
+ *	export interface User {
  *		id: Op.PrimaryKey<number>;
  *		name: Op.Required<string>;
  *		description: Op.Optional<string>;
  *		created: Date;
  *	}
- * 
- *export class UserService implements Helper.Plugin<User> {
+ *
+ *	export class UserService implements Helper.Plugin<User> {
  *		public getById(id: string) {...} // ERROR ! ID should be a number!
  *		public create(data: Apk.CreationForm<User>) {...} // OK!
- *}
-	```
- * @author Ulysse Dupont
+ *	}
+ * ```
  */
 export declare abstract class Plugin<
 	TModel extends DefaultModel,

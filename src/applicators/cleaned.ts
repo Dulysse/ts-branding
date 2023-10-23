@@ -9,7 +9,18 @@ import type { DefaultSignature, DefaultModel } from "@/utils/types";
 import type { SafeObject } from "@/helpers";
 
 /**
- * Applicator to clean up interface without `ts-branding` operator brands
+ * #### Applicator to clean up interface or type branded in order to get it without `ts-branding` operator brands
+ * ---------------------------
+ * @example
+ * ```ts
+ * import type { Op, Apk } from "@dulysse1/ts-branding";
+ *
+ * type User = {
+ * 		name: Op.Required<string>; // Brand your type!
+ * };
+ *
+ * type CleanedUser = Apk.Cleaned<User>; // { name: string; }
+ * ```
  */
 export declare type Cleaned<T extends DefaultModel> = {
 	[key in keyof T]: CleanedPrimaryKeyBrands<T[key]>;
