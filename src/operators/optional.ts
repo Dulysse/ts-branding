@@ -1,4 +1,4 @@
-import type { CreationOptionalBrand } from "@/utils/brands";
+import type { OptionalBrand } from "@/utils/brands";
 import type { DefaultSignature } from "@/utils/types";
 
 /**
@@ -10,5 +10,5 @@ export declare type Optional<
 	T extends {},
 	Signature extends string = DefaultSignature,
 > = T & {
-	[CreationOptionalBrand]?: Signature;
+	[OptionalBrand]?: Signature;
 };

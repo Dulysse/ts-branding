@@ -1,4 +1,4 @@
-import type { CreationRequiredBrand } from "@/utils/brands";
+import type { RequiredBrand } from "@/utils/brands";
 import type { DefaultSignature } from "@/utils/types";
 
 /**
@@ -10,5 +10,5 @@ export declare type Required<
 	T extends {},
 	Signature extends string = DefaultSignature,
 > = T & {
-	[CreationRequiredBrand]?: Signature;
+	[RequiredBrand]?: Signature;
 };

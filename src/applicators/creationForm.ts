@@ -4,21 +4,18 @@ import type {
 	IsBranded,
 	Merge,
 } from "@/utils/types";
-import type {
-	CreationRequiredBrand,
-	CreationOptionalBrand,
-} from "@/utils/brands";
+import type { RequiredBrand, OptionalBrand } from "@/utils/brands";
 import type { Required, Optional } from "@/operators";
 import type { Cleaned } from "./cleaned";
 
-declare type CreationRequiredForm<
+declare type RequiredForm<
 	T extends DefaultModel,
 	Signature extends string = DefaultSignature,
 > = {
 	[key in {
 		[key in keyof T]-?: IsBranded<
 			NonNullable<T[key]>,
-			typeof CreationRequiredBrand,
+			typeof RequiredBrand,
 			Signature
 		> extends true
 			? key
@@ -28,14 +25,14 @@ declare type CreationRequiredForm<
 		: T[key];
 };
 
-declare type CreationOptionalForm<
+declare type OptionalForm<
 	T extends DefaultModel,
 	Signature extends string = DefaultSignature,
 > = {
 	[key in {
 		[key in keyof T]: IsBranded<
 			NonNullable<T[key]>,
-			typeof CreationOptionalBrand,
+			typeof OptionalBrand,
 			Signature
 		> extends true
 			? key
@@ -53,7 +50,4 @@ declare type CreationOptionalForm<
 export declare type CreationForm<
 	T extends DefaultModel,
 	Signature extends string = DefaultSignature,
-> = Cleaned<
-	Merge<CreationRequiredForm<T, Signature>, CreationOptionalForm<T, Signature>>,
-	Signature
->;
+> = Cleaned<Merge<RequiredForm<T, Signature>, OptionalForm<T, Signature>>>;

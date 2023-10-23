@@ -43,6 +43,5 @@ export declare type Picked<
 					: never;
 			}[keyof T]]?: T[key];
 		}
-	>,
-	Signature
+	>
 >;

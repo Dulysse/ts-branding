@@ -8,11 +8,7 @@ import {
 	DefaultSignature,
 	And,
 } from "@/utils/types";
-import {
-	CreationRequiredBrand,
-	CreationOptionalBrand,
-	PrimaryKeyBrand,
-} from "@/utils/brands";
+import { RequiredBrand, OptionalBrand, PrimaryKeyBrand } from "@/utils/brands";
 
 /**
  * Make sure that your object is safely declared and correct with `ts-branding` rules:
@@ -71,12 +67,12 @@ declare type SafeObjectRule3<
 	{
 		[key in keyof T]-?: And<
 			T[key] extends {
-				[CreationRequiredBrand]?: DefaultSignature;
+				[RequiredBrand]?: DefaultSignature;
 			}
 				? true
 				: false,
 			T[key] extends {
-				[CreationOptionalBrand]?: DefaultSignature;
+				[OptionalBrand]?: DefaultSignature;
 			}
 				? true
 				: false
@@ -87,3 +83,34 @@ declare type SafeObjectRule3<
 ] extends [never]
 	? T
 	: TsBrandError<ErrorMessage>;
+
+/**
+ * - TODO: Don't Chain same methods! (check with clear!)
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+declare type SafeObjectRule4<
+	T extends DefaultModel,
+	_ErrorMessage extends string = "SafeObjectError: Don't Chain same methods.",
+> = {
+	[key in keyof T]: T[key] extends {
+		[RequiredBrand]?: infer RequiredSignature;
+	}
+		? RequiredSignature
+		: never;
+}[keyof T];
+
+/**
+ * - TODO: Cannot combine primary keys and another signed brand!
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+declare type SafeObjectRule5<
+	T extends DefaultModel,
+	_ErrorMessage extends
+		string = "SafeObjectError: Cannot combine primary keys and another signed brand",
+> = {
+	[key in keyof T]: T[key] extends {
+		[RequiredBrand]?: infer RequiredSignature;
+	}
+		? RequiredSignature
+		: never;
+}[keyof T];

@@ -1,12 +1,12 @@
 import { Apk, Op, Helper } from "../dist/index.mjs";
 
 export declare type IDemo = Helper.SafeObject<{
-	id: Op.PrimaryKey<1 | 2 | 3>;
+	id: Op.Required<number, "demo">;
 	name: string;
-	media: Helper.SafeObject<{
+	media: {
 		name: Op.Required<string>;
 		type: Op.Optional<"png" | "jpg">;
-	}>;
+	};
 }>;
 
-export declare type Demo = Apk.PrimaryKeyType<IDemo>;
+export declare type Demo = Apk.Cleaned<IDemo>;
