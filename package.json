@@ -1,6 +1,6 @@
 {
 	"name": "@dulysse1/ts-branding",
-	"version": "1.0.13",
+	"version": "1.1.0",
 	"description": "Decorate object properties and discover the power of Typescript brands ✨",
 	"scripts": {
 		"build": "tsup",
