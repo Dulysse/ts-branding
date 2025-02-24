@@ -1,11 +1,11 @@
-import type { Infer, Op, Helper } from "../dist";
+import type { Infer, Brand, Helper } from "../dist";
 
 export declare type IDemo = Helper.SafeObject<{
-	id: Op.Pk<number>;
+	id: Brand.Pk<number>;
 	name: string;
 	media: {
-		name: Op.Required<string>;
-		type: Op.Optional<"png" | "jpg">;
+		name: Brand.Required<string>;
+		type: Brand.Optional<"png" | "jpg">;
 	};
 }>;
 

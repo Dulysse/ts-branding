@@ -9,14 +9,14 @@ import type { OmitBrand } from "@/utils/brands";
 /**
  * - Applicator to Apply `Omitted` filter operator: {@link Omit}
 
- * @param Signature An optional key signature to applying operators into `sub-types`, by default the signature target every type signatures
+ * @param Signature An optional key signature to applying brands into `sub-types`, by default the signature target every type signatures
 
  * @example
  * ```ts
- * import type { Op, Infer } from "@dulysse1/ts-branding";
+ * import type { Brand, Infer } from "@dulysse1/ts-branding";
  *
  * type User = {
- * 		name: Op.Omit<string>; // Brand your type!
+ * 		name: Brand.Omit<string>; // Brand your type!
  * };
  *
  * type OmittedUser = Infer.Omitted<User>; // {}

@@ -24,30 +24,30 @@ import type {
 
  * @example
  * ```ts
- * import type { Op, Helper } from "@dulysse1/ts-branding";
+ * import type { Brand, Helper } from "@dulysse1/ts-branding";
  *
  *	// UNSAFE!
  *	export interface User {
- *		id: Op.Pk<number>;
- *		id2: Op.Pk<number>; // ❌ Two primary keys may be a mistake!
+ *		id: Brand.Pk<number>;
+ *		id2: Brand.Pk<number>; // ❌ Two primary keys may be a mistake!
  *		// ------------------------
- *		name: Op.Required<Op.Optional<string>>; // ❌ A required type may not be optional!
+ *		name: Brand.Required<Brand.Optional<string>>; // ❌ A required type may not be optional!
  *	}
  *
  *	// ✅ SAFE!
  *	export type User = Helper.SafeObject<{
- *		id: Op.Pk<number>;
- *		id2: Op.Pk<number>;
+ *		id: Brand.Pk<number>;
+ *		id2: Brand.Pk<number>;
  *	}>; // ❌ NOT OK! Error: one primary key only!
  *
  *	export type User = Helper.SafeObject<{
- *		name: Op.Required<Op.Optional<string>>;
+ *		name: Brand.Required<Brand.Optional<string>>;
  *	}>; // ❌ NOT OK! Error: cannot be required and optional
  *
  *	export type User = Helper.SafeObject<{
- *		id: Op.Pk<number>;
- *		name: Op.Optional<string>;
- *		description?: Op.Optional<string>;
+ *		id: Brand.Pk<number>;
+ *		name: Brand.Optional<string>;
+ *		description?: Brand.Optional<string>;
  *	}>; // ✅ OK!
  * ```
 

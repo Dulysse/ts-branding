@@ -7,10 +7,10 @@ import type { DefaultSignature } from "@/utils/types";
 
  * @example
  * ```ts
- * import type { Op } from "@dulysse1/ts-branding";
+ * import type { Brand } from "@dulysse1/ts-branding";
  *
  * type User = {
- * 		id: Op.Pk<number>; // Brand your type!
+ * 		id: Brand.Pk<number>; // Brand your type!
  * };
  * ```
  */

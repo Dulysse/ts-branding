@@ -10,7 +10,7 @@ export declare type DefaultSignature = string & {};
 /**
  * An utility type to check `brand` into a type, return `true` if the brand is in the properties of the type
 
- * @param Signature An optional key signature to applying operators into `sub-types`, by default the signature target every type signatures
+ * @param Signature An optional key signature to applying brands into `sub-types`, by default the signature target every type signatures
  */
 export declare type IsBranded<
 	T,

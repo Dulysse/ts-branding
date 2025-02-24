@@ -5,7 +5,7 @@ import type {
 	Merge,
 } from "@/utils/types";
 import type { RequiredBrand, OptionalBrand } from "@/utils/brands";
-import type { Required, Optional } from "@/operators";
+import type { Required, Optional } from "@/brands";
 import type { Cleaned } from "./cleaned";
 
 declare type RequiredForm<
@@ -43,17 +43,17 @@ declare type OptionalForm<
 };
 
 /**
- * - Applicator to Apply form operators: ({@link Required} and {@link Optional})
+ * - Applicator to Apply form brands: ({@link Required} and {@link Optional})
 
- * @param Signature An optional key signature to applying operators into `sub-types`, by default the signature target every type signatures
+ * @param Signature An optional key signature to applying brands into `sub-types`, by default the signature target every type signatures
 
  * @example
  * ```ts
- * import type { Op, Infer } from "@dulysse1/ts-branding";
+ * import type { Brand, Infer } from "@dulysse1/ts-branding";
  *
  * type User = {
- * 		name: Op.Required<string>; // Brand your type!
- * 		description: Op.Optional<string>; // Brand your type!
+ * 		name: Brand.Required<string>; // Brand your type!
+ * 		description: Brand.Optional<string>; // Brand your type!
  * };
  *
  * type ApplyUser = Infer.ApplyForm<User>; // { name: string; description?: string | undefined }

@@ -11,12 +11,12 @@ import type {
 
  * @example
  * ```ts
- * import type { Op, Infer, Helper } from "@dulysse1/ts-branding";
+ * import type { Brand, Infer, Helper } from "@dulysse1/ts-branding";
  *
  *	export interface User {
- *		id: Op.Pk<number>;
- *		name: Op.Required<string>;
- *		description: Op.Optional<string>;
+ *		id: Brand.Pk<number>;
+ *		name: Brand.Required<string>;
+ *		description: Brand.Optional<string>;
  *		created: Date;
  *	}
  *

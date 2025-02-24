@@ -5,7 +5,7 @@ import type { Optional } from "./modules/optional";
 import type { Pk } from "./modules/pk";
 
 /**
- * List of `ts-branding` operators:
+ * List of `ts-branding` brands:
  * - {@link Required}
  * - {@link Omit}
  * - {@link Pick}
@@ -19,7 +19,7 @@ import type { Pk } from "./modules/pk";
  *  | [my github](https://github.com/Dulysse)
  *  | [my LinkedIn](https://www.linkedin.com/in/ulysse-dupont)
  */
-export declare namespace Op {
+export declare namespace Brand {
 	export { Required, Omit, Pick, Optional, Pk };
 }
 

@@ -1,5 +1,8 @@
 > [!WARNING]
-> Since 1.1.0 version `Apk` is now called `Infer` and the methods `Apk.PrimaryKeyType` and `Op.PrimaryKey` are now called `Infer.PrimaryKey` and `Op.Pk`
+> Since 1.1.0 version `Apk` is now called `Infer` and the methods `Apk.PrimaryKeyType` and `Brand.PrimaryKey` are now called `Infer.PrimaryKey` and `Brand.Pk`
+
+> [!WARNING]
+> Since 1.2.0 version `Op` is now called `Brand`
 
 ![https://raw.githubusercontent.com/Dulysse/ts-branding/refs/heads/main/assets/logo.svg](https://raw.githubusercontent.com/Dulysse/ts-branding/refs/heads/main/assets/logo.svg)
 
@@ -46,7 +49,7 @@ For best results, add this to your `tsconfig.json`
 ### With EcmaScript module ✅
 
 ```tsx
-import type { Op, Infer, Helper } from "@dulysse1/ts-branding";
+import type { Brand, Infer, Helper } from "@dulysse1/ts-branding";
 // now you can decorate your forms!
 ```
 
@@ -55,12 +58,12 @@ import type { Op, Infer, Helper } from "@dulysse1/ts-branding";
 #### 👉 Create `type/interface` and decorate properties 🎨
 
 ```tsx
-import type { Op } from "@dulysse1/ts-branding";
+import type { Brand } from "@dulysse1/ts-branding";
 
 interface User {
 	id: number;
-	name: Op.Required<string>; // <= Operator Required
-	description: Op.Optional<string>; // <= Operator Optional
+	name: Brand.Required<string>; // <= Operator Required
+	description: Brand.Optional<string>; // <= Operator Optional
 	created: Date;
 }
 
@@ -93,27 +96,27 @@ type ApplyPartialFormUser = Infer.ApplyPartialForm<User>;
 #### 👉 Use `Applicators` into functions 🚀
 
 ```tsx
-import type { Op, Infer } from "@dulysse1/ts-branding";
+import type { Brand, Infer } from "@dulysse1/ts-branding";
 
 interface User {
-  id: Op.Pk<number>; // <= Operator for Primary Signature
+  id: Brand.Pk<number>; // <= Operator for Primary Signature
   name: string;
 }
 
 function getById(id: Infer.PrimaryKey<User>) {...} // <= id is type number
 ```
 
-#### 👉 Use more property operators 🖌️
+#### 👉 Use more property brands 🖌️
 
 ```tsx
-import type { Op, Infer } from "@dulysse1/ts-branding";
+import type { Brand, Infer } from "@dulysse1/ts-branding";
 
 interface User {
-	id: Op.Pk<number>;
-	name: Op.Required<string>;
-	description: Op.Optional<string>;
-	created: Op.Omit<Date>;
-	activated: Op.Pick<boolean>;
+	id: Brand.Pk<number>;
+	name: Brand.Required<string>;
+	description: Brand.Optional<string>;
+	created: Brand.Omit<Date>;
+	activated: Brand.Pick<boolean>;
 }
 
 type PickedUser = Infer.Picked<User>;
@@ -123,9 +126,9 @@ type PickedUser = Infer.Picked<User>;
 
 type OmittedUser = Infer.Omitted<User>;
 // OmittedUser: {
-// 		id: Op.Pk<number>;
-// 		name: Op.Required<string>;
-// 	description: Op.Optional<string>;
+// 		id: Brand.Pk<number>;
+// 		name: Brand.Required<string>;
+// 	description: Brand.Optional<string>;
 // }
 
 type CleanedUser = Infer.Cleaned<User>;
@@ -140,12 +143,12 @@ type CleanedUser = Infer.Cleaned<User>;
 #### 👉 Now you can use it for `strong type verification` on your REST client 💪
 
 ```tsx
-import type { Op, Infer, Helper } from "@dulysse1/ts-branding";
+import type { Brand, Infer, Helper } from "@dulysse1/ts-branding";
 
 export interface User {
-  id: Op.Pk<number>;
-  name: Op.Required<string>;
-  description: Op.Optional<string>;
+  id: Brand.Pk<number>;
+  name: Brand.Required<string>;
+  description: Brand.Optional<string>;
   created: Date;
 }
 
@@ -158,12 +161,12 @@ export class UserService implements Helper.Plugin<User> {
 #### 👉 Use different `Signature` to use multiple type `applicators` 📋
 
 ```tsx
-import type { Op, Infer, Helper } from "@dulysse1/ts-branding";
+import type { Brand, Infer, Helper } from "@dulysse1/ts-branding";
 
 export interface User {
-	name1: Op.Required<string, "user1">;
-	name2: Op.Optional<string, "user2">;
-	demo: Op.Picked<boolean, "user1">;
+	name1: Brand.Required<string, "user1">;
+	name2: Brand.Optional<string, "user2">;
+	demo: Brand.Picked<boolean, "user1">;
 }
 
 type ApplyFormUser1 = Infer.ApplyForm<User, "user1">;
@@ -185,44 +188,44 @@ type PickedUser1 = Infer.Picked<User, "user1">;
 #### 👉 You can create your object in complete safety with the `SafeObject` helper! ✋🛑
 
 ```tsx
-import type { Op, Helper } from "@dulysse1/ts-branding";
+import type { Brand, Helper } from "@dulysse1/ts-branding";
 
 // UNSAFE!
 export interface User {
-	id: Op.Pk<number>;
-	id2: Op.Pk<number>; // ❌ Two primary keys may be a mistake!
+	id: Brand.Pk<number>;
+	id2: Brand.Pk<number>; // ❌ Two primary keys may be a mistake!
 	// ------------------------
-	name: Op.Required<Op.Optional<string>>; // ❌ A required type may not be optional!
+	name: Brand.Required<Brand.Optional<string>>; // ❌ A required type may not be optional!
 }
 
 // ✅ SAFE!
 export type User = Helper.SafeObject<{
-	id: Op.Pk<number>;
-	id2: Op.Pk<number>;
+	id: Brand.Pk<number>;
+	id2: Brand.Pk<number>;
 }>; // ❌ NOT OK! Error: one primary key only!
 
 export type User = Helper.SafeObject<{
-	name: Op.Required<Op.Optional<string>>;
+	name: Brand.Required<Brand.Optional<string>>;
 }>; // ❌ NOT OK! Error: cannot be required and optional
 
 export type User = Helper.SafeObject<{
-	id: Op.Pk<number>;
-	name: Op.Optional<string>;
-	description?: Op.Optional<string>;
+	id: Brand.Pk<number>;
+	name: Brand.Optional<string>;
+	description?: Brand.Optional<string>;
 }>; // ✅ OK!
 ```
 
 #### 👉 And many more complex types! 🧠
 
 ```tsx
-import type { Infer, Op, Helper } from "@dulysse1/ts-branding";
+import type { Infer, Brand, Helper } from "@dulysse1/ts-branding";
 
 declare type IDemo = Helper.SafeObject<{
-	id: Op.Pk<number>;
+	id: Brand.Pk<number>;
 	name: string;
 	media: Helper.SafeObject<{
-		name: Op.Required<string>;
-		type: Op.Optional<"png" | "jpg">;
+		name: Brand.Required<string>;
+		type: Brand.Optional<"png" | "jpg">;
 	}>;
 }>;
 

@@ -7,23 +7,23 @@ import type {
 	UnionLast,
 } from "@/utils/types";
 import type { PrimaryKeyBrand } from "@/utils/brands";
-import type { Pk } from "@/operators";
+import type { Pk } from "@/brands";
 
 /**
  * - Applicator to infer the `primary key` value type with operator: {@link Pk}
 
  * @example
  * ```ts
- * import type { Op, Infer } from "@dulysse1/ts-branding";
+ * import type { Brand, Infer } from "@dulysse1/ts-branding";
  *
  * type User = {
- * 		id: Op.Pk<number>; // Brand your type!
+ * 		id: Brand.Pk<number>; // Brand your type!
  * };
  *
  * type UserPrimaryKey = Infer.PrimaryKey<User>; // number
  *
  * type User2 = {
- * 		id: Op.Omit<number>; // Brand your type!
+ * 		id: Brand.Omit<number>; // Brand your type!
  * };
  *
  * type User2PrimaryKey = Infer.PrimaryKey<User2>; // never

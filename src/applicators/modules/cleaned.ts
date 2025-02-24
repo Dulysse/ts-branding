@@ -13,10 +13,10 @@ import type { SafeObject } from "@/helpers";
 
  * @example
  * ```ts
- * import type { Op, Infer } from "@dulysse1/ts-branding";
+ * import type { Brand, Infer } from "@dulysse1/ts-branding";
  *
  * type User = {
- * 		name: Op.Required<string>; // Brand your type!
+ * 		name: Brand.Required<string>; // Brand your type!
  * };
  *
  * type CleanedUser = Infer.Cleaned<User>; // { name: string; }
