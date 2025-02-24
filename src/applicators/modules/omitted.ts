@@ -7,19 +7,19 @@ import type {
 import type { OmitBrand } from "@/utils/brands";
 
 /**
- * #### Applicator to Apply `Omitted` filter operator: {@link Omit}
- * ---------------------------
+ * - Applicator to Apply `Omitted` filter operator: {@link Omit}
+
  * @param Signature An optional key signature to applying operators into `sub-types`, by default the signature target every type signatures
- * ---------------------------
+
  * @example
  * ```ts
- * import type { Op, Apk } from "@dulysse1/ts-branding";
+ * import type { Op, Infer } from "@dulysse1/ts-branding";
  *
  * type User = {
  * 		name: Op.Omit<string>; // Brand your type!
  * };
  *
- * type OmittedUser = Apk.Omitted<User>; // {}
+ * type OmittedUser = Infer.Omitted<User>; // {}
  * ```
  */
 export declare type Omitted<
@@ -35,8 +35,8 @@ export declare type Omitted<
 			> extends true
 				? never
 				: keyof T[key] extends undefined
-				? never
-				: key;
+					? never
+					: key;
 		}[keyof T]]-?: T[key];
 	},
 	{
@@ -48,8 +48,8 @@ export declare type Omitted<
 			> extends true
 				? never
 				: keyof T[key] extends undefined
-				? key
-				: never;
+					? key
+					: never;
 		}[keyof T]]?: T[key];
 	}
 >;

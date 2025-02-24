@@ -8,19 +8,19 @@ import type { PickBrand } from "@/utils/brands";
 import type { Cleaned } from "./cleaned";
 
 /**
- * #### Applicator to Apply `Picked` filter operator: {@link Pick}
- * ---------------------------
+ * - Applicator to Apply `Picked` filter operator: {@link Pick}
+
  * @param Signature An optional key signature to applying operators into `sub-types`, by default the signature target every type signatures
- * ---------------------------
+
  * @example
  * ```ts
- * import type { Op, Apk } from "@dulysse1/ts-branding";
+ * import type { Op, Infer } from "@dulysse1/ts-branding";
  *
  * type User = {
  * 		name: Op.Pick<string>; // Brand your type!
  * };
  *
- * type PickedUser = Apk.Picked<User>; // { name: string; }
+ * type PickedUser = Infer.Picked<User>; // { name: string; }
  * ```
  */
 export declare type Picked<

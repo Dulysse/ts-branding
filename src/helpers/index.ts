@@ -1,11 +1,11 @@
-import type { Plugin } from "./plugin";
-import type { SafeObject } from "./safeObject";
+import type { Plugin } from "./modules/plugin";
+import type { SafeObject } from "./modules/safeObject";
 
 /**
  * List of `ts-branding` helpers:
  * - {@link Plugin}
  * - {@link SafeObject}
- * ---------------------------
+
  * Do you have any ideas or recommendations for improvement?
  * ### Contact me!
  * @author Ulysse Dupont -->

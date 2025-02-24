@@ -1,20 +1,20 @@
 import type { DefaultModel, MaybePromise } from "@/utils/types";
 import type {
-	CreationForm,
-	ModificationForm,
-	PrimaryKeyType,
+	ApplyForm,
+	ApplyPartialForm,
+	PrimaryKey,
 	Cleaned,
 } from "@/applicators";
 
 /**
  * ### Plugin to apply `REST` safe validation to web client
- * ---------------------------
+
  * @example
  * ```ts
- * import type { Op, Apk, Helper } from "@dulysse1/ts-branding";
+ * import type { Op, Infer, Helper } from "@dulysse1/ts-branding";
  *
  *	export interface User {
- *		id: Op.PrimaryKey<number>;
+ *		id: Op.Pk<number>;
  *		name: Op.Required<string>;
  *		description: Op.Optional<string>;
  *		created: Date;
@@ -22,7 +22,7 @@ import type {
  *
  *	export class UserService implements Helper.Plugin<User> {
  *		public getById(id: string) {...} // ERROR ! ID should be a number!
- *		public create(data: Apk.CreationForm<User>) {...} // OK!
+ *		public create(data: Infer.ApplyForm<User>) {...} // OK!
  *	}
  * ```
  */
@@ -32,12 +32,12 @@ export declare abstract class Plugin<
 > {
 	public getAll?(): MaybePromise<TCleanedModel[]>;
 	public getById?(
-		id: PrimaryKeyType<TModel>
+		id: PrimaryKey<TModel>,
 	): MaybePromise<TCleanedModel | undefined>;
-	public create?(data: CreationForm<TModel>): MaybePromise<TCleanedModel>;
+	public create?(data: ApplyForm<TModel>): MaybePromise<TCleanedModel>;
 	public update?(
-		id: PrimaryKeyType<TModel>,
-		data: ModificationForm<TModel>
+		id: PrimaryKey<TModel>,
+		data: ApplyPartialForm<TModel>,
 	): MaybePromise<TCleanedModel>;
-	public delete?(id: PrimaryKeyType<TModel>): MaybePromise<void>;
+	public delete?(id: PrimaryKey<TModel>): MaybePromise<void>;
 }

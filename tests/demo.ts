@@ -1,7 +1,7 @@
-import type { Apk, Op, Helper } from "../dist/index.mjs";
+import type { Infer, Op, Helper } from "../dist";
 
 export declare type IDemo = Helper.SafeObject<{
-	id: Op.Required<number, "demo">;
+	id: Op.Pk<number>;
 	name: string;
 	media: {
 		name: Op.Required<string>;
@@ -9,4 +9,4 @@ export declare type IDemo = Helper.SafeObject<{
 	};
 }>;
 
-export declare type Demo = Apk.Cleaned<IDemo["media"]>;
+export declare type Demo = Infer.PrimaryKey<IDemo>;

@@ -9,17 +9,17 @@ import type { DefaultSignature, DefaultModel } from "@/utils/types";
 import type { SafeObject } from "@/helpers";
 
 /**
- * #### Applicator to clean up interface or type branded in order to get it without `ts-branding` operator brands
- * ---------------------------
+ * - Applicator to clean up interface or type branded in order to get it without `ts-branding` operator brands
+
  * @example
  * ```ts
- * import type { Op, Apk } from "@dulysse1/ts-branding";
+ * import type { Op, Infer } from "@dulysse1/ts-branding";
  *
  * type User = {
  * 		name: Op.Required<string>; // Brand your type!
  * };
  *
- * type CleanedUser = Apk.Cleaned<User>; // { name: string; }
+ * type CleanedUser = Infer.Cleaned<User>; // { name: string; }
  * ```
  */
 export declare type Cleaned<T extends DefaultModel> = {
@@ -43,7 +43,7 @@ declare type CleanedRequiredBrands<T> = T extends {
 }
 	? T extends infer Cleaned & {
 			[RequiredBrand]?: Signature;
-	  }
+		}
 		? CleanedOptionalBrands<Cleaned>
 		: CleanedOptionalBrands<T>
 	: CleanedOptionalBrands<T>;
@@ -56,7 +56,7 @@ declare type CleanedOptionalBrands<T> = T extends {
 }
 	? T extends infer Cleaned & {
 			[OptionalBrand]?: Signature;
-	  }
+		}
 		? CleanedOmitBrands<Cleaned>
 		: CleanedOmitBrands<T>
 	: CleanedOmitBrands<T>;
@@ -69,7 +69,7 @@ declare type CleanedOmitBrands<T> = T extends {
 }
 	? T extends infer Cleaned & {
 			[OmitBrand]?: Signature;
-	  }
+		}
 		? CleanedPickBrands<Cleaned>
 		: CleanedPickBrands<T>
 	: CleanedPickBrands<T>;
@@ -82,7 +82,7 @@ declare type CleanedPickBrands<T> = T extends {
 }
 	? T extends infer Cleaned & {
 			[PickBrand]?: Signature;
-	  }
+		}
 		? CleanedSafeObjects<Cleaned>
 		: CleanedSafeObjects<T>
 	: CleanedSafeObjects<T>;
@@ -90,8 +90,9 @@ declare type CleanedPickBrands<T> = T extends {
 /**
  * - Clean Sub-objects: {@link SafeObject} or {@link DefaultModel}
  */
-declare type CleanedSafeObjects<T> = T extends SafeObject<infer SubObject>
-	? Cleaned<SubObject>
-	: T extends DefaultModel
-	? Cleaned<T>
-	: T;
+declare type CleanedSafeObjects<T> =
+	T extends SafeObject<infer SubObject>
+		? Cleaned<SubObject>
+		: T extends DefaultModel
+			? Cleaned<T>
+			: T;

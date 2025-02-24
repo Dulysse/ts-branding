@@ -1,19 +1,19 @@
-import type { Cleaned } from "./cleaned";
-import type { CreationForm } from "./creationForm";
-import type { ModificationForm } from "./modificationForm";
-import type { Omitted } from "./omitted";
-import type { Picked } from "./picked";
-import type { PrimaryKeyType } from "./primaryKeyType";
+import type { Cleaned } from "./modules/cleaned";
+import type { ApplyForm } from "./modules/applyForm";
+import type { ApplyPartialForm } from "./modules/applyPartialForm";
+import type { Omitted } from "./modules/omitted";
+import type { Picked } from "./modules/picked";
+import type { PrimaryKey } from "./modules/primaryKey";
 
 /**
  * List of `ts-branding` applicators:
  * - {@link Cleaned}
- * - {@link CreationForm}
- * - {@link ModificationForm}
+ * - {@link ApplyForm}
+ * - {@link ApplyPartialForm}
  * - {@link Omitted}
  * - {@link Picked}
- * - {@link PrimaryKeyType}
- * ---------------------------
+ * - {@link PrimaryKey}
+
  * Do you have any ideas or recommendations for improvement?
  * ### Contact me!
  * @author Ulysse Dupont -->
@@ -21,22 +21,8 @@ import type { PrimaryKeyType } from "./primaryKeyType";
  *  | [my github](https://github.com/Dulysse)
  *  | [my LinkedIn](https://www.linkedin.com/in/ulysse-dupont)
  */
-export declare namespace Apk {
-	export {
-		Cleaned,
-		CreationForm,
-		ModificationForm,
-		Omitted,
-		Picked,
-		PrimaryKeyType,
-	};
+export declare namespace Infer {
+	export { Cleaned, ApplyForm, ApplyPartialForm, Omitted, Picked, PrimaryKey };
 }
 
-export {
-	Cleaned,
-	CreationForm,
-	ModificationForm,
-	Omitted,
-	Picked,
-	PrimaryKeyType,
-};
+export { Cleaned, ApplyForm, ApplyPartialForm, Omitted, Picked, PrimaryKey };

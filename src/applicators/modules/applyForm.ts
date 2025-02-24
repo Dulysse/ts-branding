@@ -43,23 +43,23 @@ declare type OptionalForm<
 };
 
 /**
- * #### Applicator to Apply Creation form operators: {@link Required} and {@link Optional}
- * ---------------------------
+ * - Applicator to Apply form operators: ({@link Required} and {@link Optional})
+
  * @param Signature An optional key signature to applying operators into `sub-types`, by default the signature target every type signatures
- * ---------------------------
+
  * @example
  * ```ts
- * import type { Op, Apk } from "@dulysse1/ts-branding";
+ * import type { Op, Infer } from "@dulysse1/ts-branding";
  *
  * type User = {
  * 		name: Op.Required<string>; // Brand your type!
  * 		description: Op.Optional<string>; // Brand your type!
  * };
  *
- * type CreationUser = Apk.CreationForm<User>; // { name: string; description?: string | undefined }
+ * type ApplyUser = Infer.ApplyForm<User>; // { name: string; description?: string | undefined }
  * ```
  */
-export declare type CreationForm<
+export declare type ApplyForm<
 	T extends DefaultModel,
 	Signature extends string = DefaultSignature,
 > = Cleaned<Merge<RequiredForm<T, Signature>, OptionalForm<T, Signature>>>;

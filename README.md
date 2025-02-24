@@ -1,4 +1,7 @@
-![https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-ar21.png](https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-ar21.png)
+> [!WARNING]
+> Since 1.1.0 version `Apk` is now called `Infer` and the methods `Apk.PrimaryKeyType` and `Op.PrimaryKey` are now called `Infer.PrimaryKey` and `Op.Pk`
+
+![https://raw.githubusercontent.com/Dulysse/ts-branding/refs/heads/main/assets/logo.svg](https://raw.githubusercontent.com/Dulysse/ts-branding/refs/heads/main/assets/logo.svg)
 
 # 🛠 ts-branding 🛠
 
@@ -43,7 +46,7 @@ For best results, add this to your `tsconfig.json`
 ### With EcmaScript module ✅
 
 ```tsx
-import type { Op, Apk, Helper } from "@dulysse1/ts-branding";
+import type { Op, Infer, Helper } from "@dulysse1/ts-branding";
 // now you can decorate your forms!
 ```
 
@@ -72,16 +75,16 @@ const user: User = {
 #### 👉 Apply `Applicators` to trigger Brand functions 🔧
 
 ```tsx
-import type { Apk } from "@dulysse1/ts-branding";
+import type { Infer } from "@dulysse1/ts-branding";
 
-type CreationFormUser = Apk.CreationForm<User>;
-// CreationFormUser: {
+type ApplyFormUser = Infer.ApplyForm<User>;
+// ApplyFormUser: {
 // 	name: string; // <= Required in form
 // 	description?: string | undefined; // <= Optional in form
 // }
 
-type ModificationFormUser = Apk.ModificationForm<User>;
-// ModificationFormUser: {
+type ApplyPartialFormUser = Infer.ApplyPartialForm<User>;
+// ApplyPartialFormUser: {
 // 	name?: string | undefined; // <= Optional in form
 // 	description?: string | undefined; // <= Optional in form
 // }
@@ -90,42 +93,42 @@ type ModificationFormUser = Apk.ModificationForm<User>;
 #### 👉 Use `Applicators` into functions 🚀
 
 ```tsx
-import type { Op, Apk } from "@dulysse1/ts-branding";
+import type { Op, Infer } from "@dulysse1/ts-branding";
 
 interface User {
-  id: Op.PrimaryKey<number>; // <= Operator for Primary Signature
+  id: Op.Pk<number>; // <= Operator for Primary Signature
   name: string;
 }
 
-function getById(id: Apk.PrimaryKeyType<User>) {...} // <= id is type number
+function getById(id: Infer.PrimaryKey<User>) {...} // <= id is type number
 ```
 
 #### 👉 Use more property operators 🖌️
 
 ```tsx
-import type { Op, Apk } from "@dulysse1/ts-branding";
+import type { Op, Infer } from "@dulysse1/ts-branding";
 
 interface User {
-	id: Op.PrimaryKey<number>;
+	id: Op.Pk<number>;
 	name: Op.Required<string>;
 	description: Op.Optional<string>;
 	created: Op.Omit<Date>;
 	activated: Op.Pick<boolean>;
 }
 
-type PickedUser = Apk.Picked<User>;
+type PickedUser = Infer.Picked<User>;
 // PickedUser: {
 //    activated: boolean;
 // }
 
-type OmittedUser = Apk.Omitted<User>;
+type OmittedUser = Infer.Omitted<User>;
 // OmittedUser: {
-// 		id: Op.PrimaryKey<number>;
+// 		id: Op.Pk<number>;
 // 		name: Op.Required<string>;
 // 	description: Op.Optional<string>;
 // }
 
-type CleanedUser = Apk.Cleaned<User>;
+type CleanedUser = Infer.Cleaned<User>;
 // CleanedUser: {
 // 	id: number;
 // 	name: string;
@@ -137,10 +140,10 @@ type CleanedUser = Apk.Cleaned<User>;
 #### 👉 Now you can use it for `strong type verification` on your REST client 💪
 
 ```tsx
-import type { Op, Apk, Helper } from "@dulysse1/ts-branding";
+import type { Op, Infer, Helper } from "@dulysse1/ts-branding";
 
 export interface User {
-  id: Op.PrimaryKey<number>;
+  id: Op.Pk<number>;
   name: Op.Required<string>;
   description: Op.Optional<string>;
   created: Date;
@@ -148,14 +151,14 @@ export interface User {
 
 export class UserService implements Helper.Plugin<User> {
   public getById(id: string) {...} // ERROR ! ID should be a number!
-  public create(data: Apk.CreationForm<User>) {...} // OK!
+  public create(data: Infer.ApplyForm<User>) {...} // OK!
 }
 ```
 
 #### 👉 Use different `Signature` to use multiple type `applicators` 📋
 
 ```tsx
-import type { Op, Apk, Helper } from "@dulysse1/ts-branding";
+import type { Op, Infer, Helper } from "@dulysse1/ts-branding";
 
 export interface User {
 	name1: Op.Required<string, "user1">;
@@ -163,17 +166,17 @@ export interface User {
 	demo: Op.Picked<boolean, "user1">;
 }
 
-type CreationFormUser1 = Apk.CreationForm<User, "user1">;
-// CreationFormUser1: {
+type ApplyFormUser1 = Infer.ApplyForm<User, "user1">;
+// ApplyFormUser1: {
 //    name1: string; // <= Required in form with signature "user1"
 // }
 
-type CreationFormUser2 = Apk.CreationForm<User, "user2">;
-//  CreationFormUser2: {
+type ApplyFormUser2 = Infer.ApplyForm<User, "user2">;
+//  ApplyFormUser2: {
 //     name2?: string | undefined; // <= Required in form with signature "user2"
 //  }
 
-type PickedUser1 = Apk.Picked<User, "user1">;
+type PickedUser1 = Infer.Picked<User, "user1">;
 //  PickedUser1: {
 //     demo: boolean;
 //  }
@@ -186,16 +189,16 @@ import type { Op, Helper } from "@dulysse1/ts-branding";
 
 // UNSAFE!
 export interface User {
-	id: Op.PrimaryKey<number>;
-	id2: Op.PrimaryKey<number>; // ❌ Two primary keys may be a mistake!
+	id: Op.Pk<number>;
+	id2: Op.Pk<number>; // ❌ Two primary keys may be a mistake!
 	// ------------------------
 	name: Op.Required<Op.Optional<string>>; // ❌ A required type may not be optional!
 }
 
 // ✅ SAFE!
 export type User = Helper.SafeObject<{
-	id: Op.PrimaryKey<number>;
-	id2: Op.PrimaryKey<number>;
+	id: Op.Pk<number>;
+	id2: Op.Pk<number>;
 }>; // ❌ NOT OK! Error: one primary key only!
 
 export type User = Helper.SafeObject<{
@@ -203,7 +206,7 @@ export type User = Helper.SafeObject<{
 }>; // ❌ NOT OK! Error: cannot be required and optional
 
 export type User = Helper.SafeObject<{
-	id: Op.PrimaryKey<number>;
+	id: Op.Pk<number>;
 	name: Op.Optional<string>;
 	description?: Op.Optional<string>;
 }>; // ✅ OK!
@@ -212,10 +215,10 @@ export type User = Helper.SafeObject<{
 #### 👉 And many more complex types! 🧠
 
 ```tsx
-import type { Apk, Op, Helper } from "@dulysse1/ts-branding";
+import type { Infer, Op, Helper } from "@dulysse1/ts-branding";
 
 declare type IDemo = Helper.SafeObject<{
-	id: Op.PrimaryKey<number>;
+	id: Op.Pk<number>;
 	name: string;
 	media: Helper.SafeObject<{
 		name: Op.Required<string>;
@@ -223,7 +226,7 @@ declare type IDemo = Helper.SafeObject<{
 	}>;
 }>;
 
-export declare type IDemoMedia = Apk.CreationForm<IDemo["media"]>;
+export declare type IDemoMedia = Infer.ApplyForm<IDemo["media"]>;
 // IDemoMedia: {
 //   name: string;
 //   type?: "png" | "jpg" | undefined;

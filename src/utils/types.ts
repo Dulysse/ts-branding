@@ -9,7 +9,7 @@ export declare type DefaultModel = object;
 export declare type DefaultSignature = string & {};
 /**
  * An utility type to check `brand` into a type, return `true` if the brand is in the properties of the type
- * ---------------------------
+
  * @param Signature An optional key signature to applying operators into `sub-types`, by default the signature target every type signatures
  */
 export declare type IsBranded<
@@ -28,8 +28,8 @@ export declare type Merge<O extends object, O2 extends object> = {
 	[key in keyof (O & O2)]: key extends keyof O
 		? O[key]
 		: key extends keyof O2
-		? O2[key]
-		: never;
+			? O2[key]
+			: never;
 };
 /**
  * Copy of Node native {@link globalThis.Partial} type to improve preview type performance
@@ -68,11 +68,12 @@ declare type IntersectOf<U> = (
 /**
  * An utility type to return the `last` element of an union type
  */
-export declare type UnionLast<U> = IntersectOf<
-	U extends unknown ? (x: U) => void : never
-> extends (x: infer P) => void
-	? P
-	: never;
+export declare type UnionLast<U> =
+	IntersectOf<U extends unknown ? (x: U) => void : never> extends (
+		x: infer P,
+	) => void
+		? P
+		: never;
 /**
  * An utility type to return `true` only if `type 1` and `type 2` are `true`
  */

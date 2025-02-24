@@ -19,25 +19,25 @@ import type {
  * 1) Only `one` primary key is allowed.
  * 2) Primary key cannot be `null` or `undefined`.
  * 3) Do not apply `Required` and `Optional` marks to the same property
- * ---------------------------
- * #### Warning! If only one rule is not respected the result of the type an empty object with {@link ErrorBrand} as {@link TsBrandError} result with the reason of the error
- * ---------------------------
+
+ * - Warning! If only one rule is not respected the result of the type an empty object with {@link ErrorBrand} as {@link TsBrandError} result with the reason of the error
+
  * @example
  * ```ts
  * import type { Op, Helper } from "@dulysse1/ts-branding";
  *
  *	// UNSAFE!
  *	export interface User {
- *		id: Op.PrimaryKey<number>;
- *		id2: Op.PrimaryKey<number>; // ❌ Two primary keys may be a mistake!
+ *		id: Op.Pk<number>;
+ *		id2: Op.Pk<number>; // ❌ Two primary keys may be a mistake!
  *		// ------------------------
  *		name: Op.Required<Op.Optional<string>>; // ❌ A required type may not be optional!
  *	}
  *
  *	// ✅ SAFE!
  *	export type User = Helper.SafeObject<{
- *		id: Op.PrimaryKey<number>;
- *		id2: Op.PrimaryKey<number>;
+ *		id: Op.Pk<number>;
+ *		id2: Op.Pk<number>;
  *	}>; // ❌ NOT OK! Error: one primary key only!
  *
  *	export type User = Helper.SafeObject<{
@@ -45,12 +45,12 @@ import type {
  *	}>; // ❌ NOT OK! Error: cannot be required and optional
  *
  *	export type User = Helper.SafeObject<{
- *		id: Op.PrimaryKey<number>;
+ *		id: Op.Pk<number>;
  *		name: Op.Optional<string>;
  *		description?: Op.Optional<string>;
  *	}>; // ✅ OK!
  * ```
- * ---------------------------
+
  * @returns safe object type or {@link TsBrandError}
  */
 export declare type SafeObject<T extends DefaultModel> = SafeObjectRule1<T>;
@@ -74,8 +74,8 @@ declare type SafeObjectRule1<
 	? [PrimaryKeys] extends [never]
 		? SafeObjectRule3<T>
 		: Equal<UnionLast<PrimaryKeys>, PrimaryKeys> extends true
-		? SafeObjectRule2<T, Satisfy<PrimaryKeys, keyof T>>
-		: TsBrandError<ErrorMessage>
+			? SafeObjectRule2<T, Satisfy<PrimaryKeys, keyof T>>
+			: TsBrandError<ErrorMessage>
 	: never;
 
 /**
